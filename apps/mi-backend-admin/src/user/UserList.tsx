@@ -9,6 +9,7 @@ export const UserList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="email" source="email" />
         <TextField label="ID" source="id" />
+        <TextField label="roles" source="roles" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="username" source="username" />{" "}
       </Datagrid>
