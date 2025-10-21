@@ -14,6 +14,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { Post } from "../../post/base/Post";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 
 @ObjectType()
 class User {
@@ -49,6 +52,16 @@ class User {
   @Type(() => Post)
   @IsOptional()
   posts?: Array<Post>;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  roles!: JsonValue;
 
   @ApiProperty({
     required: true,

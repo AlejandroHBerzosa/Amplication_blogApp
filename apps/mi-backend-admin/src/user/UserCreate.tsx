@@ -11,6 +11,7 @@ import {
 } from "react-admin";
 
 import { PostTitle } from "../post/PostTitle";
+import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -25,6 +26,12 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
             format={(value: any) => value && value.map((v: any) => v.id)}
           />
         </ReferenceArrayInput>
+        <SelectArrayInput
+          source="roles"
+          choices={ROLES_OPTIONS}
+          optionText="label"
+          optionValue="value"
+        />
         <TextInput label="username" source="username" />
       </SimpleForm>
     </Create>
