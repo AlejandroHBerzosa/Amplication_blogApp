@@ -1,0 +1,15 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model WeatherDatum {
+  createdAt DateTime @default(now())
+  data      Json?
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
