@@ -1,6 +1,8 @@
+import { RedisModule } from "./redis/redis.module";
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { PostModule } from "./post/post.module";
+import { WeatherDatumModule } from "./weatherDatum/weatherDatum.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -20,6 +22,7 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     UserModule,
     PostModule,
+    WeatherDatumModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
@@ -42,6 +45,7 @@ import { AuthModule } from "./auth/auth.module";
       inject: [ConfigService],
       imports: [ConfigModule],
     }),
+    RedisModule,
   ],
   providers: [],
 })

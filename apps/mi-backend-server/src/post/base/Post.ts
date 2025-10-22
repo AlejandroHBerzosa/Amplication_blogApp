@@ -20,6 +20,7 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 import { User } from "../../user/base/User";
+import { WeatherDatum } from "../../weatherDatum/base/WeatherDatum";
 
 @ObjectType()
 class Post {
@@ -84,6 +85,15 @@ class Post {
   @Type(() => User)
   @IsOptional()
   user?: User | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => WeatherDatum,
+  })
+  @ValidateNested()
+  @Type(() => WeatherDatum)
+  @IsOptional()
+  weather?: WeatherDatum | null;
 }
 
 export { Post as Post };

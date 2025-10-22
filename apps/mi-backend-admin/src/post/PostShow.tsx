@@ -8,6 +8,7 @@ import {
   ReferenceField,
 } from "react-admin";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import { WEATHERDATUM_TITLE_FIELD } from "../weatherDatum/WeatherDatumTitle";
 
 export const PostShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -21,6 +22,13 @@ export const PostShow = (props: ShowProps): React.ReactElement => {
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceField label="user" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
+          label="weather"
+          source="weatherdatum.id"
+          reference="WeatherDatum"
+        >
+          <TextField source={WEATHERDATUM_TITLE_FIELD} />
         </ReferenceField>
       </SimpleShowLayout>
     </Show>

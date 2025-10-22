@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Post as PrismaPost, User as PrismaUser } from "@prisma/client";
+
+import {
+  Prisma,
+  Post as PrismaPost,
+  User as PrismaUser,
+  WeatherDatum as PrismaWeatherDatum,
+} from "@prisma/client";
 
 export class PostServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -41,5 +47,13 @@ export class PostServiceBase {
         where: { id: parentId },
       })
       .user();
+  }
+
+  async getWeather(parentId: string): Promise<PrismaWeatherDatum | null> {
+    return this.prisma.post
+      .findUnique({
+        where: { id: parentId },
+      })
+      .weather();
   }
 }
