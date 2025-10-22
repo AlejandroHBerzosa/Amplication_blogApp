@@ -13,6 +13,10 @@ import { PostList } from "./post/PostList";
 import { PostCreate } from "./post/PostCreate";
 import { PostEdit } from "./post/PostEdit";
 import { PostShow } from "./post/PostShow";
+import { WeatherDatumList } from "./weatherDatum/WeatherDatumList";
+import { WeatherDatumCreate } from "./weatherDatum/WeatherDatumCreate";
+import { WeatherDatumEdit } from "./weatherDatum/WeatherDatumEdit";
+import { WeatherDatumShow } from "./weatherDatum/WeatherDatumShow";
 import { httpAuthProvider } from "./auth-provider/ra-auth-http";
 
 const App = (): React.ReactElement => {
@@ -39,6 +43,13 @@ const App = (): React.ReactElement => {
           edit={PostEdit}
           create={PostCreate}
           show={PostShow}
+        />
+        <Resource
+          name="WeatherDatum"
+          list={WeatherDatumList}
+          edit={WeatherDatumEdit}
+          create={WeatherDatumCreate}
+          show={WeatherDatumShow}
         />
       </Admin>
     </div>

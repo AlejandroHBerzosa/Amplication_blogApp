@@ -58,6 +58,12 @@ export class PostControllerBase {
               connect: data.user,
             }
           : undefined,
+
+        weather: data.weather
+          ? {
+              connect: data.weather,
+            }
+          : undefined,
       },
       select: {
         content: true,
@@ -68,6 +74,12 @@ export class PostControllerBase {
         updatedAt: true,
 
         user: {
+          select: {
+            id: true,
+          },
+        },
+
+        weather: {
           select: {
             id: true,
           },
@@ -105,6 +117,12 @@ export class PostControllerBase {
             id: true,
           },
         },
+
+        weather: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -135,6 +153,12 @@ export class PostControllerBase {
         updatedAt: true,
 
         user: {
+          select: {
+            id: true,
+          },
+        },
+
+        weather: {
           select: {
             id: true,
           },
@@ -179,6 +203,12 @@ export class PostControllerBase {
                 connect: data.user,
               }
             : undefined,
+
+          weather: data.weather
+            ? {
+                connect: data.weather,
+              }
+            : undefined,
         },
         select: {
           content: true,
@@ -189,6 +219,12 @@ export class PostControllerBase {
           updatedAt: true,
 
           user: {
+            select: {
+              id: true,
+            },
+          },
+
+          weather: {
             select: {
               id: true,
             },
@@ -231,6 +267,12 @@ export class PostControllerBase {
           updatedAt: true,
 
           user: {
+            select: {
+              id: true,
+            },
+          },
+
+          weather: {
             select: {
               id: true,
             },

@@ -232,6 +232,12 @@ export class UserControllerBase {
             id: true,
           },
         },
+
+        weather: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (results === null) {

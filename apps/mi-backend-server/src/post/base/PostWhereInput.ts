@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { WeatherDatumWhereUniqueInput } from "../../weatherDatum/base/WeatherDatumWhereUniqueInput";
 
 @InputType()
 class PostWhereInput {
@@ -74,6 +75,18 @@ class PostWhereInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => WeatherDatumWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => WeatherDatumWhereUniqueInput)
+  @IsOptional()
+  @Field(() => WeatherDatumWhereUniqueInput, {
+    nullable: true,
+  })
+  weather?: WeatherDatumWhereUniqueInput;
 }
 
 export { PostWhereInput as PostWhereInput };

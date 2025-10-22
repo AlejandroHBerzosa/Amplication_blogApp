@@ -27,6 +27,7 @@ import { CreatePostArgs } from "./CreatePostArgs";
 import { UpdatePostArgs } from "./UpdatePostArgs";
 import { DeletePostArgs } from "./DeletePostArgs";
 import { User } from "../../user/base/User";
+import { WeatherDatum } from "../../weatherDatum/base/WeatherDatum";
 import { PostService } from "../post.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Post)
@@ -95,6 +96,12 @@ export class PostResolverBase {
               connect: args.data.user,
             }
           : undefined,
+
+        weather: args.data.weather
+          ? {
+              connect: args.data.weather,
+            }
+          : undefined,
       },
     });
   }
@@ -116,6 +123,12 @@ export class PostResolverBase {
           user: args.data.user
             ? {
                 connect: args.data.user,
+              }
+            : undefined,
+
+          weather: args.data.weather
+            ? {
+                connect: args.data.weather,
               }
             : undefined,
         },
@@ -161,6 +174,27 @@ export class PostResolverBase {
   })
   async getUser(@graphql.Parent() parent: Post): Promise<User | null> {
     const result = await this.service.getUser(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => WeatherDatum, {
+    nullable: true,
+    name: "weather",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "WeatherDatum",
+    action: "read",
+    possession: "any",
+  })
+  async getWeather(
+    @graphql.Parent() parent: Post
+  ): Promise<WeatherDatum | null> {
+    const result = await this.service.getWeather(parent.id);
 
     if (!result) {
       return null;
