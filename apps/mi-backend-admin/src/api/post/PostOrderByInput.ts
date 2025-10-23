@@ -8,5 +8,5 @@ export type PostOrderByInput = {
   title?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
-  weatherId?: SortOrder;
+  ID?: SortOrder;
 };

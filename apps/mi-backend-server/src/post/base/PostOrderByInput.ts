@@ -105,7 +105,7 @@ class PostOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  weatherId?: SortOrder;
+  ID?: SortOrder;
 }
 
 export { PostOrderByInput as PostOrderByInput };
