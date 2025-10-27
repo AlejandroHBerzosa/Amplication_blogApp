@@ -28,6 +28,16 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+input JsonFilter {
+  equals: JSONObject
+  not: JSONObject
+}
+
 type MetaQueryPayload {
   count: Float!
 }
@@ -35,11 +45,14 @@ type MetaQueryPayload {
 type Mutation {
   createPost(data: PostCreateInput!): Post!
   createUser(data: UserCreateInput!): User!
+  createWeatherDatum(data: WeatherDatumCreateInput!): WeatherDatum!
   deletePost(where: PostWhereUniqueInput!): Post!
   deleteUser(where: UserWhereUniqueInput!): User!
+  deleteWeatherDatum(where: WeatherDatumWhereUniqueInput!): WeatherDatum!
   login(credentials: Credentials!): UserInfo!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+  updateWeatherDatum(data: WeatherDatumUpdateInput!, where: WeatherDatumWhereUniqueInput!): WeatherDatum!
 }
 
 type Post {
@@ -50,6 +63,7 @@ type Post {
   title: String!
   updatedAt: DateTime!
   user: User
+  weather: WeatherDatum
 }
 
 input PostCreateInput {
@@ -57,6 +71,7 @@ input PostCreateInput {
   date: DateTime
   title: String!
   user: UserWhereUniqueInput
+  weather: WeatherDatumWhereUniqueInput
 }
 
 input PostCreateNestedManyWithoutUsersInput {
@@ -70,6 +85,7 @@ input PostListRelationFilter {
 }
 
 input PostOrderByInput {
+  ID: SortOrder
   content: SortOrder
   createdAt: SortOrder
   date: SortOrder
@@ -84,6 +100,7 @@ input PostUpdateInput {
   date: DateTime
   title: String
   user: UserWhereUniqueInput
+  weather: WeatherDatumWhereUniqueInput
 }
 
 input PostUpdateManyWithoutUsersInput {
@@ -98,6 +115,7 @@ input PostWhereInput {
   id: StringFilter
   title: StringFilter
   user: UserWhereUniqueInput
+  weather: WeatherDatumWhereUniqueInput
 }
 
 input PostWhereUniqueInput {
@@ -107,11 +125,14 @@ input PostWhereUniqueInput {
 type Query {
   _postsMeta(where: PostWhereInput): MetaQueryPayload!
   _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  _weatherDataMeta(where: WeatherDatumWhereInput): MetaQueryPayload!
   post(where: PostWhereUniqueInput!): Post
   posts(orderBy: [PostOrderByInput!], skip: Float, take: Float, where: PostWhereInput): [Post!]!
   user(where: UserWhereUniqueInput!): User
   userInfo: UserInfo!
   users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+  weatherData(orderBy: [WeatherDatumOrderByInput!], skip: Float, take: Float, where: WeatherDatumWhereInput): [WeatherDatum!]!
+  weatherDatum(where: WeatherDatumWhereUniqueInput!): WeatherDatum
 }
 
 enum QueryMode {
@@ -205,5 +226,41 @@ input UserWhereInput {
 }
 
 input UserWhereUniqueInput {
+  id: String!
+}
+
+type WeatherDatum {
+  createdAt: DateTime!
+  currentWeather: JSON
+  id: String!
+  posts: Post
+  updatedAt: DateTime!
+}
+
+input WeatherDatumCreateInput {
+  currentWeather: JSON
+  posts: PostWhereUniqueInput
+}
+
+input WeatherDatumOrderByInput {
+  createdAt: SortOrder
+  currentWeather: SortOrder
+  id: SortOrder
+  postsId: SortOrder
+  updatedAt: SortOrder
+}
+
+input WeatherDatumUpdateInput {
+  currentWeather: JSON
+  posts: PostWhereUniqueInput
+}
+
+input WeatherDatumWhereInput {
+  currentWeather: JsonFilter
+  id: StringFilter
+  posts: PostWhereUniqueInput
+}
+
+input WeatherDatumWhereUniqueInput {
   id: String!
 }
