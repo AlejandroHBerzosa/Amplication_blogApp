@@ -21,7 +21,7 @@ model User {
 model Post {
   content   String
   createdAt DateTime      @default(now())
-  date      DateTime?     @unique
+  date      DateTime?
   id        String        @id @default(cuid())
   title     String        @unique
   updatedAt DateTime      @updatedAt
