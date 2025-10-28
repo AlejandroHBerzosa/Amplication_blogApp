@@ -45,7 +45,19 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
   - Scripts de deployment
   - Monitoring y troubleshooting
 
-### 🔧 **Configuración**
+### � **Redis y Message Broker**
+- **[REDIS_GUIDE.md](./REDIS_GUIDE.md)** - Guía completa de Redis
+  - Arquitectura del message broker
+  - Configuración y componentes
+  - Flujo de eventos y casos de uso
+  - Ejemplos prácticos y debugging
+- **[REDIS_TOPICS.md](./REDIS_TOPICS.md)** - Documentación de topics.ts
+  - Sistema de eventos y temas
+  - Type safety y mejores prácticas
+  - Extensibilidad y mantenimiento
+  - Casos de uso avanzados
+
+### �🔧 **Configuración**
 - **[.env.example](./.env.example)** - Plantilla de variables de entorno
   - Configuración de base de datos
   - Configuración de autenticación
@@ -89,6 +101,9 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
 | **GraphQL queries** | [API_GUIDE.md](./API_GUIDE.md) | GraphQL API |
 | **Docker setup** | [QUICK_START.md](./QUICK_START.md) | Setup con Docker |
 | **Kubernetes deploy** | [DEPLOYMENT.md](./DEPLOYMENT.md) | Kubernetes |
+| **Redis message broker** | [REDIS_GUIDE.md](./REDIS_GUIDE.md) | Arquitectura Redis |
+| **Eventos y topics** | [REDIS_TOPICS.md](./REDIS_TOPICS.md) | Sistema de Eventos |
+| **Debugging Redis** | [REDIS_GUIDE.md](./REDIS_GUIDE.md) | Comandos Debug |
 
 ## 📚 **Recursos Adicionales**
 
