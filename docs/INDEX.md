@@ -56,6 +56,17 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
   - Type safety y mejores prácticas
   - Extensibilidad y mantenimiento
   - Casos de uso avanzados
+- **[REDIS_CACHE.md](./REDIS_CACHE.md)** - Sistema de Caché Redis
+  - Implementación de caché para datos meteorológicos
+  - Configuración y arquitectura del caché
+  - TTL de 20 minutos para optimizar llamadas a API
+  - Comandos de debugging y mejores prácticas
+  - Métricas de performance y troubleshooting
+- **[REDIS_CACHE_TESTING.md](./REDIS_CACHE_TESTING.md)** - Pruebas del Sistema de Caché
+  - Scripts de prueba automatizados
+  - Validación de cache hit/miss
+  - Pruebas de performance y estrés
+  - Checklist de validación
 - **[WEATHER_SERVICE.md](./WEATHER_SERVICE.md)** - Integración del servicio meteorológico
   - Arquitectura de integración con OpenWeatherMap
   - Flujo de eventos asíncrono via Redis
@@ -108,6 +119,8 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
 | **Kubernetes deploy** | [DEPLOYMENT.md](./DEPLOYMENT.md) | Kubernetes |
 | **Redis message broker** | [REDIS_GUIDE.md](./REDIS_GUIDE.md) | Arquitectura Redis |
 | **Eventos y topics** | [REDIS_TOPICS.md](./REDIS_TOPICS.md) | Sistema de Eventos |
+| **Sistema de caché Redis** | [REDIS_CACHE.md](./REDIS_CACHE.md) | Implementación de Caché |
+| **Probar caché Redis** | [REDIS_CACHE_TESTING.md](./REDIS_CACHE_TESTING.md) | Scripts de Prueba |
 | **Debugging Redis** | [REDIS_GUIDE.md](./REDIS_GUIDE.md) | Comandos Debug |
 
 ## 📚 **Recursos Adicionales**
