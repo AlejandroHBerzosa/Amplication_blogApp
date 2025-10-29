@@ -32,7 +32,7 @@ model Post {
 
 model WeatherDatum {
   createdAt      DateTime @default(now())
-  currentWeather Json?
+  currentWeather String?
   id             String   @id @default(cuid())
   posts          Post?    @relation(fields: [postsId], references: [id])
   postsId        String?  @unique

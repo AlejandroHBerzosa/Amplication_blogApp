@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { JsonFilter } from "../../util/JsonFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
@@ -21,14 +21,14 @@ import { PostWhereUniqueInput } from "../../post/base/PostWhereUniqueInput";
 class WeatherDatumWhereInput {
   @ApiProperty({
     required: false,
-    type: JsonFilter,
+    type: StringNullableFilter,
   })
-  @Type(() => JsonFilter)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => JsonFilter, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  currentWeather?: JsonFilter;
+  currentWeather?: StringNullableFilter;
 
   @ApiProperty({
     required: false,

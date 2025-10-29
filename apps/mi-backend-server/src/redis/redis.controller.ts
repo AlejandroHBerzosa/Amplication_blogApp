@@ -1,9 +1,10 @@
 import { EventPattern, Payload } from "@nestjs/microservices";
-import { Controller } from "@nestjs/common";
+import { Controller, Logger } from "@nestjs/common";
 import { RedisMessage } from "./redisMessage";
 
 @Controller("redis-controller")
 export class RedisController {
+  private readonly logger = new Logger(RedisController.name);
   
   @EventPattern('post.created')
   async handlePostCreated(@Payload() data: any) {
@@ -58,4 +59,27 @@ export class RedisController {
     // - Analytics de actividad
     // - Notificaciones de seguridad
   }
+
+  @EventPattern('weather.data_fetched')
+  async handleWeatherDataFetched(@Payload() data: any) {
+    this.logger.log("🌤️ [REDIS HANDLER] Datos meteorológicos recibidos:");
+    this.logger.log(`📊 [REDIS HANDLER] Post ID: ${data.postId}, Datos: ${JSON.stringify(data.weatherData)}`);
+    
+    // Aquí puedes añadir lógica adicional como:
+    // - Notificar al usuario que los datos meteorológicos están disponibles
+    // - Actualizar cache
+    // - Analytics de uso del servicio meteorológico
+    // - Generar notificación si hay condiciones climáticas extremas
+    
+    if (data.weatherData) {
+      this.logger.log(`✅ [REDIS HANDLER] Datos meteorológicos procesados exitosamente para post ${data.postId}`);
+      this.logger.log(`🌡️ Temperatura: ${data.weatherData.temperature}°C, ${data.weatherData.description}`);
+    } else {
+      this.logger.warn(`⚠️ [REDIS HANDLER] No se pudieron obtener datos meteorológicos para post ${data.postId}`);
+      if (data.error) {
+        this.logger.error(`❌ Error: ${data.error}`);
+      }
+    }
+  }
 }
+

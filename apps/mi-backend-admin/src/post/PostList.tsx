@@ -9,7 +9,6 @@ import {
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
-import { WEATHERDATUM_TITLE_FIELD } from "../weatherDatum/WeatherDatumTitle";
 
 export const PostList = (props: ListProps): React.ReactElement => {
   return (
@@ -26,10 +25,10 @@ export const PostList = (props: ListProps): React.ReactElement => {
         </ReferenceField>
         <ReferenceField
           label="weather"
-          source="weatherdatum.id"
+          source="weather.id"
           reference="WeatherDatum"
         >
-          <TextField source={WEATHERDATUM_TITLE_FIELD} />
+          <TextField source="currentWeather" label="Weather" />
         </ReferenceField>{" "}
       </Datagrid>
     </List>

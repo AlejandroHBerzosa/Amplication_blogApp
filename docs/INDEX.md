@@ -45,7 +45,7 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
   - Scripts de deployment
   - Monitoring y troubleshooting
 
-### � **Redis y Message Broker**
+### 🌤️ **Redis y Message Broker**
 - **[REDIS_GUIDE.md](./REDIS_GUIDE.md)** - Guía completa de Redis
   - Arquitectura del message broker
   - Configuración y componentes
@@ -56,6 +56,11 @@ Bienvenido a la documentación completa del proyecto BlogApp. Esta sección cont
   - Type safety y mejores prácticas
   - Extensibilidad y mantenimiento
   - Casos de uso avanzados
+- **[WEATHER_SERVICE.md](./WEATHER_SERVICE.md)** - Integración del servicio meteorológico
+  - Arquitectura de integración con OpenWeatherMap
+  - Flujo de eventos asíncrono via Redis
+  - Configuración y uso
+  - Troubleshooting y mejoras futuras
 
 ### �🔧 **Configuración**
 - **[.env.example](./.env.example)** - Plantilla de variables de entorno

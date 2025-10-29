@@ -35,7 +35,7 @@ export class PostService extends PostServiceBase {
         userId: createdPost.userId
       });
 
-      // 🚀 ENVIAR EVENTO A REDIS
+      // 🚀 ENVIAR EVENTO A REDIS - POST_CREATED
       try {
         await this.redisProducer.emitMessage(
           MessageBrokerTopics.POST_CREATED,
@@ -51,6 +51,22 @@ export class PostService extends PostServiceBase {
         console.log("📨 [REDIS] Evento POST_CREATED enviado exitosamente");
       } catch (redisError) {
         console.error("❌ [REDIS] Error enviando evento POST_CREATED:", redisError);
+        // No fallar la creación del post por error de Redis
+      }
+
+      // 🌤️ ENVIAR EVENTO A REDIS - SOLICITUD DE DATOS METEOROLÓGICOS
+      try {
+        await this.redisProducer.emitMessage(
+          MessageBrokerTopics.POST_CREATE_WEATHER_REQUEST,
+          {
+            postId: createdPost.id,
+            city: "Murcia", // Por defecto Murcia, se puede parametrizar en el futuro
+            timestamp: new Date().toISOString()
+          }
+        );
+        console.log("📨 [REDIS] Evento POST_CREATE_WEATHER_REQUEST enviado exitosamente");
+      } catch (redisError) {
+        console.error("❌ [REDIS] Error enviando evento POST_CREATE_WEATHER_REQUEST:", redisError);
         // No fallar la creación del post por error de Redis
       }
 

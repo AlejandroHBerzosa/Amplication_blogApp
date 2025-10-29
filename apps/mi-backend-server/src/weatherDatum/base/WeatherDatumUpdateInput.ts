@@ -11,10 +11,8 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsJSONValue } from "../../validators";
+import { IsString } from "class-validator";
 import { IsOptional, ValidateNested } from "class-validator";
-import { GraphQLJSON } from "graphql-type-json";
-import { InputJsonValue } from "../../types";
 import { PostWhereUniqueInput } from "../../post/base/PostWhereUniqueInput";
 import { Type } from "class-transformer";
 
@@ -22,13 +20,14 @@ import { Type } from "class-transformer";
 class WeatherDatumUpdateInput {
   @ApiProperty({
     required: false,
+    type: String,
   })
-  @IsJSONValue()
+  @IsString()
   @IsOptional()
-  @Field(() => GraphQLJSON, {
+  @Field(() => String, {
     nullable: true,
   })
-  currentWeather?: InputJsonValue;
+  currentWeather?: string | null;
 
   @ApiProperty({
     required: false,

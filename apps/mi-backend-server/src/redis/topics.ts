@@ -5,6 +5,7 @@ export enum MessageBrokerTopics {
   POST_UPDATED = "post.updated",
   POST_DELETED = "post.deleted",
   POST_VIEWED = "post.viewed",
+  POST_CREATE_WEATHER_REQUEST = "post.create.weather_request", // Solicitud de datos meteorológicos al crear post
   
   // Users
   USER_CREATED = "user.created",
@@ -14,6 +15,7 @@ export enum MessageBrokerTopics {
   
   // Weather
   WEATHER_UPDATED = "weather.updated",
+  WEATHER_DATA_FETCHED = "weather.data_fetched", // Datos meteorológicos obtenidos desde la API
   
   // System
   SYSTEM_HEALTH_CHECK = "system.health_check",
