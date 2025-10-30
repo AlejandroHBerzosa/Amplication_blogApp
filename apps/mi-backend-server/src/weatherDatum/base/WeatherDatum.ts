@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsOptional, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { Post } from "../../post/base/Post";
+import { GraphQLJSON } from "graphql-type-json";
 
 @ObjectType()
 class WeatherDatum {
@@ -35,6 +36,16 @@ class WeatherDatum {
     nullable: true,
   })
   currentWeather!: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: "object",
+  })
+  @IsOptional()
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  weatherDataJson!: any | null;
 
   @ApiProperty({
     required: true,

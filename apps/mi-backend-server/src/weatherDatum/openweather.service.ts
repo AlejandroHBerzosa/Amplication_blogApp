@@ -3,8 +3,15 @@ import { ConfigService } from "@nestjs/config";
 import axios from "axios";
 
 export interface WeatherData {
-  main: string;      // weather.main (ej: "Clear", "Clouds")
-  temp: number;      // main.temp (temperatura en Celsius)
+  main: string;           // weather.main (ej: "Clear", "Clouds")
+  temp: number;           // main.temp (temperatura en Celsius)
+  description?: string;   // weather.description (ej: "cielo claro")
+  humidity?: number;      // main.humidity (humedad en %)
+  windSpeed?: number;     // wind.speed (velocidad del viento en m/s)
+  feelsLike?: number;     // main.feels_like (sensación térmica)
+  pressure?: number;      // main.pressure (presión atmosférica en hPa)
+  city?: string;          // name (nombre de la ciudad)
+  country?: string;       // sys.country (código del país)
 }
 
 @Injectable()
@@ -48,11 +55,18 @@ export class OpenWeatherService {
       const data = response.data;
 
       const weatherData: WeatherData = {
-        main: data.weather[0].main,           // "Clear", "Clouds", "Rain", etc.
-        temp: Math.round(data.main.temp * 10) / 10,  // Temperatura redondeada a 1 decimal
+        main: data.weather[0].main,                          // "Clear", "Clouds", "Rain", etc.
+        temp: Math.round(data.main.temp * 10) / 10,         // Temperatura redondeada a 1 decimal
+        description: data.weather[0].description,            // Descripción detallada
+        humidity: data.main.humidity,                        // Humedad %
+        windSpeed: Math.round(data.wind.speed * 10) / 10,   // Velocidad del viento
+        feelsLike: Math.round(data.main.feels_like * 10) / 10, // Sensación térmica
+        pressure: data.main.pressure,                        // Presión atmosférica
+        city: data.name,                                     // Nombre de la ciudad
+        country: data.sys.country,                           // Código del país
       };
 
-      this.logger.log(`✅ [OPENWEATHER] Datos obtenidos: ${weatherData.main}, ${weatherData.temp}°C`);
+      this.logger.log(`✅ [OPENWEATHER] Datos obtenidos: ${weatherData.main}, ${weatherData.temp}°C, ${weatherData.description}`);
       
       return weatherData;
 

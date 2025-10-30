@@ -225,6 +225,7 @@ type WeatherDatum {
   id: String!
   posts: Post
   updatedAt: DateTime!
+  weatherDataJson: JSON
 }
 
 input WeatherDatumCreateInput {

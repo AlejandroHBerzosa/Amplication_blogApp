@@ -68,7 +68,8 @@ export class WeatherDatumService extends WeatherDatumServiceBase {
       // 5. Crear el registro de WeatherDatum en la base de datos
       const createdWeatherDatum = await this.prisma.weatherDatum.create({
         data: {
-          currentWeather: `${weatherData.main}, ${weatherData.temp}°C`,
+          currentWeather: `${weatherData.main}, ${weatherData.temp}°C`, // Formato string (mantiene compatibilidad)
+          weatherDataJson: weatherData as any, // Formato JSON completo (nuevo campo)
           posts: {
             connect: { id: postId }
           }
@@ -76,6 +77,7 @@ export class WeatherDatumService extends WeatherDatumServiceBase {
       });
 
       this.logger.log(`✅ [WEATHER SERVICE] WeatherDatum creado con ID: ${createdWeatherDatum.id}`);
+      this.logger.log(`📊 [WEATHER SERVICE] Datos guardados - String: "${createdWeatherDatum.currentWeather}" | JSON: guardado`);
 
       // 6. Emitir evento indicando que los datos meteorológicos están disponibles
       await this.redisProducer.emitMessage(

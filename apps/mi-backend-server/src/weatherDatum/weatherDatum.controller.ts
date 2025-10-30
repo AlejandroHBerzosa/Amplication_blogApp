@@ -14,4 +14,34 @@ export class WeatherDatumController extends WeatherDatumControllerBase {
   ) {
     super(service, rolesBuilder);
   }
+
+  // Endpoint temporal para verificar datos JSON
+  @common.Get("debug/latest")
+  @swagger.ApiOperation({ summary: "Obtener los últimos 5 registros con datos JSON completos" })
+  async getLatestWithJson() {
+    const data = await this.service.weatherData({
+      take: 5,
+      orderBy: {
+        createdAt: "desc"
+      },
+      select: {
+        id: true,
+        currentWeather: true,
+        weatherDataJson: true,
+        createdAt: true,
+        posts: {
+          select: {
+            id: true,
+            title: true
+          }
+        }
+      }
+    });
+
+    return {
+      message: "Últimos 5 registros de WeatherDatum",
+      count: data.length,
+      data: data
+    };
+  }
 }
